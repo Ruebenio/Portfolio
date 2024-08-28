@@ -37,7 +37,7 @@ def curs():
       
         #Saving the API key
         nasdaqdatalink.ApiConfig.api_key = os.environ['NASDAQ_KEY']
-        # nasdaqdatalink.ApiConfig.api_key = 'X1xxhhECwuyNPezdQtmg'
+        
         #Saving the Bitcoin Trade Volume vs Transaction Volume dataframe
         TVTVR_data = nasdaqdatalink.get_table('QDL/BCHAIN', code='TVTVR')
     
@@ -66,18 +66,24 @@ def curs():
         cur_rate = rate(MKPRU_sub)
     
         #Calculating basic statisitcs of the bitcoin price.
+        dump = {"nums": [1,2,3]}
+        MKPRU_stats = pd.DataFrame(dump)
+
         MKPRU_stats = stats(MKPRU_data)
-        print (MKPRU_stats)
+        min,max,std,avg = [],[],[],[]
+
+
+        # print (MKPRU_stats)
     
       #Calculating basic statisitcs of the bitcoin price
         TVTVR_stats = stats(TVTVR_data)
-        print (TVTVR_stats)
+        # print (TVTVR_stats)
 
     except Exception as e:
         print(f'The error : {e} ocurred while retrieving the data.Please try again at a later time.')
 
   # Rendering the template and passing the variables via Jinga
-    return render_template ('curr.html' , min = MKPRU_stats['min'], max= MKPRU_stats['max'], std = MKPRU_stats['std'], avg = MKPRU_stats['mean'] ,start_dt = MKPRU_sub[1],end_dt = MKPRU_sub[0] , rate = cur_rate, appr = MKPRU_appr,curpr = MKPRU_stats['cur_price'],tvtvr_min = TVTVR_stats['min'],tvtvr_max = TVTVR_stats['max'],tvtvr_std= TVTVR_stats['std'],tvtvr_avg = TVTVR_stats['mean'],bit_plot = MKPRU_sub, mkpru_plot = TVTVR_sub)
+    return render_template ('curr.html' , min = MKPRU_stats['min'],max= MKPRU_stats['max'], std = MKPRU_stats['std'], avg = MKPRU_stats['mean'] , start_dt = MKPRU_sub[1],end_dt = MKPRU_sub[0] , rate = cur_rate, appr = MKPRU_appr,curpr = MKPRU_stats['cur_price'],tvtvr_min = TVTVR_stats['min'],tvtvr_max = TVTVR_stats['max'],tvtvr_std= TVTVR_stats['std'],tvtvr_avg = TVTVR_stats['mean'],bit_plot = MKPRU_sub, mkpru_plot = TVTVR_sub)
 
 
 #Flask activation of home page Harry Porter & Twilio
