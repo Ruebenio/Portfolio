@@ -83,7 +83,7 @@ def curs():
         print(f'The error : {e} ocurred while retrieving the data.Please try again at a later time.')
 
   # Rendering the template and passing the variables via Jinga
-    return render_template ('curr.html' , min = MKPRU_stats['min'],max= MKPRU_stats['max'], std = MKPRU_stats['std'], avg = MKPRU_stats['mean'] , start_dt = MKPRU_sub[1],end_dt = MKPRU_sub[0] , rate = cur_rate, appr = MKPRU_appr,curpr = MKPRU_stats['cur_price'],tvtvr_min = TVTVR_stats['min'],tvtvr_max = TVTVR_stats['max'],tvtvr_std= TVTVR_stats['std'],tvtvr_avg = TVTVR_stats['mean'],bit_plot = MKPRU_sub, mkpru_plot = TVTVR_sub)
+    return render_template ('curr.html' , min = MKPRU_stats['min'],max= MKPRU_stats['max'], std = MKPRU_stats['std'], avg = MKPRU_stats['mean'] ,start_dt = MKPRU_sub[1],end_dt = MKPRU_sub[0] , rate = cur_rate, appr = MKPRU_appr,curpr = MKPRU_stats['cur_price'],tvtvr_min = TVTVR_stats['min'],tvtvr_max = TVTVR_stats['max'],tvtvr_std= TVTVR_stats['std'],tvtvr_avg = TVTVR_stats['mean'],bit_plot = MKPRU_sub, mkpru_plot = TVTVR_sub)
 
 
 #Flask activation of home page Harry Porter & Twilio
